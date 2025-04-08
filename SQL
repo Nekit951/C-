@@ -1,0 +1,192 @@
+CREATE DATABASE Test;
+
+USE Test;
+
+CREATE TABLE Citys
+(
+   cityId INT PRIMARY KEY AUTO_INCREMENT,
+   cityName VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Users
+(
+   userId INT PRIMARY KEY AUTO_INCREMENT,
+   userName VARCHAR(255) NOT NULL,
+   City INT NOT NULL,
+   FOREIGN KEY (City) REFERENCES Citys(cityId)
+);
+
+CREATE TABLE Amount
+(
+   userId INT NOT NULL,
+   amount DECIMAL(10,2) NOT NULL,
+   FOREIGN KEY (userId) REFERENCES Users(userId)
+);
+INSERT INTO Citys (cityName) VALUES ('Москва');
+INSERT INTO Citys (cityName) VALUES ('Санкт-Петербург');
+INSERT INTO Citys (cityName) VALUES ('Казань');
+INSERT INTO Citys (cityName) VALUES ('Ростов-на-Дону');
+INSERT INTO Citys (cityName) VALUES ('Сочи');
+INSERT INTO Citys (cityName) VALUES ('Екатеринбург');
+INSERT INTO Citys (cityName) VALUES ('Уфа');
+INSERT INTO Citys (cityName) VALUES ('Курск');
+INSERT INTO Citys (cityName) VALUES ('Тюмень');
+INSERT INTO Citys (cityName) VALUES ('Нальчик');
+INSERT INTO Citys (cityName) VALUES ('Ярославль');
+INSERT INTO Citys (cityName) VALUES ('Калуга');
+INSERT INTO Citys (cityName) VALUES ('Омск');
+INSERT INTO Citys (cityName) VALUES ('Пятигорск');
+INSERT INTO Citys (cityName) VALUES ('Пенза');
+INSERT INTO Citys (cityName) VALUES ('Томск');
+INSERT INTO Citys (cityName) VALUES ('Красноярск');
+INSERT INTO Citys (cityName) VALUES ('Воронеж');
+INSERT INTO Citys (cityName) VALUES ('Грозный');
+INSERT INTO Citys (cityName) VALUES ('Йошкар-Ола');
+INSERT INTO Citys (cityName) VALUES ('Архангельск');
+INSERT INTO Citys (cityName) VALUES ('Астрахань');
+INSERT INTO Citys (cityName) VALUES ('Махачкала');
+INSERT INTO Citys (cityName) VALUES ('Самара');
+INSERT INTO Citys (cityName) VALUES ('Саратов');
+INSERT INTO Citys (cityName) VALUES ('Нижний Новгород');
+INSERT INTO Citys (cityName) VALUES ('Тула');
+INSERT INTO Citys (cityName) VALUES ('Хабаровск');
+INSERT INTO Citys (cityName) VALUES ('Саранск');
+INSERT INTO Citys (cityName) VALUES ('Владивосток');
+INSERT INTO Citys (cityName) VALUES ('Улан-Удэ');
+INSERT INTO Citys (cityName) VALUES ('Белгород');
+INSERT INTO Citys (cityName) VALUES ('Волгоград');
+INSERT INTO Citys (cityName) VALUES ('Краснодар');
+INSERT INTO Citys (cityName) VALUES ('Благовещенск');
+INSERT INTO Citys (cityName) VALUES ('Анапа');
+INSERT INTO Citys (cityName) VALUES ('Владикавказ');
+INSERT INTO Citys (cityName) VALUES ('Новосибирск');
+INSERT INTO Citys (cityName) VALUES ('Мурманск');
+INSERT INTO Citys (cityName) VALUES ('Норильск');
+
+INSERT INTO Users (userName, City) VALUES ('София', 1);
+INSERT INTO Users (userName, City) VALUES ('Дарья', 3);
+INSERT INTO Users (userName, City) VALUES ('Ясмина', 7);
+INSERT INTO Users (userName, City) VALUES ('Артём', 1);
+INSERT INTO Users (userName, City) VALUES ('Фёдор', 27);
+INSERT INTO Users (userName, City) VALUES ('Елизавета', 20);
+INSERT INTO Users (userName, City) VALUES ('Иван', 8);
+INSERT INTO Users (userName, City) VALUES ('Олег', 1);
+INSERT INTO Users (userName, City) VALUES ('Василиса', 2);
+INSERT INTO Users (userName, City) VALUES ('Михаил', 12);
+INSERT INTO Users (userName, City) VALUES ('Руслан', 18);
+INSERT INTO Users (userName, City) VALUES ('Агата', 30);
+INSERT INTO Users (userName, City) VALUES ('Александр', 6);
+INSERT INTO Users (userName, City) VALUES ('Анна', 1);
+INSERT INTO Users (userName, City) VALUES ('Вероника', 40);
+INSERT INTO Users (userName, City) VALUES ('Виктор', 1);
+INSERT INTO Users (userName, City) VALUES ('Леонид', 1);
+INSERT INTO Users (userName, City) VALUES ('Анатолий', 13);
+INSERT INTO Users (userName, City) VALUES ('Арина', 25);
+INSERT INTO Users (userName, City) VALUES ('Ульяна', 1);
+
+
+INSERT INTO Amount (userId, amount) VALUES (1, 100);
+INSERT INTO Amount (userId, amount) VALUES (1, 200);
+INSERT INTO Amount (userId, amount) VALUES (1, 300);
+INSERT INTO Amount (userId, amount) VALUES (1, 400);
+INSERT INTO Amount (userId, amount) VALUES (1, 500);
+INSERT INTO Amount (userId, amount) VALUES (2, 150);
+INSERT INTO Amount (userId, amount) VALUES (2, 250);
+INSERT INTO Amount (userId, amount) VALUES (2, 190);
+INSERT INTO Amount (userId, amount) VALUES (2, 200);
+INSERT INTO Amount (userId, amount) VALUES (2, 500);
+INSERT INTO Amount (userId, amount) VALUES (3, 180);
+INSERT INTO Amount (userId, amount) VALUES (3, 220);
+INSERT INTO Amount (userId, amount) VALUES (3, 300);
+INSERT INTO Amount (userId, amount) VALUES (3, 600);
+INSERT INTO Amount (userId, amount) VALUES (3, 400);
+INSERT INTO Amount (userId, amount) VALUES (4, 120);
+INSERT INTO Amount (userId, amount) VALUES (4, 230);
+INSERT INTO Amount (userId, amount) VALUES (4, 150);
+INSERT INTO Amount (userId, amount) VALUES (4, 450);
+INSERT INTO Amount (userId, amount) VALUES (4, 300);
+INSERT INTO Amount (userId, amount) VALUES (5, 170);
+INSERT INTO Amount (userId, amount) VALUES (5, 270);
+INSERT INTO Amount (userId, amount) VALUES (5, 290);
+INSERT INTO Amount (userId, amount) VALUES (5, 150);
+INSERT INTO Amount (userId, amount) VALUES (5, 200);
+INSERT INTO Amount (userId, amount) VALUES (6, 210);
+INSERT INTO Amount (userId, amount) VALUES (6, 290);
+INSERT INTO Amount (userId, amount) VALUES (6, 500);
+INSERT INTO Amount (userId, amount) VALUES (6, 180);
+INSERT INTO Amount (userId, amount) VALUES (6, 100);
+INSERT INTO Amount (userId, amount) VALUES (7, 140);
+INSERT INTO Amount (userId, amount) VALUES (7, 260);
+INSERT INTO Amount (userId, amount) VALUES (7, 300);
+INSERT INTO Amount (userId, amount) VALUES (7, 580);
+INSERT INTO Amount (userId, amount) VALUES (7, 400);
+INSERT INTO Amount (userId, amount) VALUES (8, 160);
+INSERT INTO Amount (userId, amount) VALUES (8, 240);
+INSERT INTO Amount (userId, amount) VALUES (8, 500);
+INSERT INTO Amount (userId, amount) VALUES (8, 220);
+INSERT INTO Amount (userId, amount) VALUES (8, 700);
+INSERT INTO Amount (userId, amount) VALUES (9, 190);
+INSERT INTO Amount (userId, amount) VALUES (9, 280);
+INSERT INTO Amount (userId, amount) VALUES (9, 440);
+INSERT INTO Amount (userId, amount) VALUES (9, 300);
+INSERT INTO Amount (userId, amount) VALUES (9, 175);
+INSERT INTO Amount (userId, amount) VALUES (10, 250);
+INSERT INTO Amount (userId, amount) VALUES (10, 300);
+INSERT INTO Amount (userId, amount) VALUES (10, 225);
+INSERT INTO Amount (userId, amount) VALUES (10, 350);
+INSERT INTO Amount (userId, amount) VALUES (10, 400);
+INSERT INTO Amount (userId, amount) VALUES (11, 120);
+INSERT INTO Amount (userId, amount) VALUES (11, 200);
+INSERT INTO Amount (userId, amount) VALUES (11, 150);
+INSERT INTO Amount (userId, amount) VALUES (11, 279);
+INSERT INTO Amount (userId, amount) VALUES (11, 500);
+INSERT INTO Amount (userId, amount) VALUES (12, 170);
+INSERT INTO Amount (userId, amount) VALUES (12, 250);
+INSERT INTO Amount (userId, amount) VALUES (12, 480);
+INSERT INTO Amount (userId, amount) VALUES (12, 290);
+INSERT INTO Amount (userId, amount) VALUES (12, 300);
+INSERT INTO Amount (userId, amount) VALUES (13, 140);
+INSERT INTO Amount (userId, amount) VALUES (13, 220);
+INSERT INTO Amount (userId, amount) VALUES (13, 350);
+INSERT INTO Amount (userId, amount) VALUES (13, 260);
+INSERT INTO Amount (userId, amount) VALUES (13, 120);
+INSERT INTO Amount (userId, amount) VALUES (14, 160);
+INSERT INTO Amount (userId, amount) VALUES (14, 230);
+INSERT INTO Amount (userId, amount) VALUES (14, 200);
+INSERT INTO Amount (userId, amount) VALUES (14, 330);
+INSERT INTO Amount (userId, amount) VALUES (14, 500);
+INSERT INTO Amount (userId, amount) VALUES (15, 180);
+INSERT INTO Amount (userId, amount) VALUES (15, 270);
+INSERT INTO Amount (userId, amount) VALUES (15, 280);
+INSERT INTO Amount (userId, amount) VALUES (15, 400);
+INSERT INTO Amount (userId, amount) VALUES (15, 385);
+INSERT INTO Amount (userId, amount) VALUES (16, 190);
+INSERT INTO Amount (userId, amount) VALUES (16, 290);
+INSERT INTO Amount (userId, amount) VALUES (16, 500);
+INSERT INTO Amount (userId, amount) VALUES (16, 430);
+INSERT INTO Amount (userId, amount) VALUES (16, 125);
+INSERT INTO Amount (userId, amount) VALUES (17, 130);
+INSERT INTO Amount (userId, amount) VALUES (17, 260);
+INSERT INTO Amount (userId, amount) VALUES (17, 360);
+INSERT INTO Amount (userId, amount) VALUES (17, 230);
+INSERT INTO Amount (userId, amount) VALUES (17, 144);
+INSERT INTO Amount (userId, amount) VALUES (18, 150);
+INSERT INTO Amount (userId, amount) VALUES (18, 240);
+INSERT INTO Amount (userId, amount) VALUES (18, 550);
+INSERT INTO Amount (userId, amount) VALUES (18, 140);
+INSERT INTO Amount (userId, amount) VALUES (18, 350);
+INSERT INTO Amount (userId, amount) VALUES (19, 160);
+INSERT INTO Amount (userId, amount) VALUES (19, 280);
+INSERT INTO Amount (userId, amount) VALUES (19, 260);
+INSERT INTO Amount (userId, amount) VALUES (19, 220);
+INSERT INTO Amount (userId, amount) VALUES (19, 480);
+INSERT INTO Amount (userId, amount) VALUES (20, 170);
+INSERT INTO Amount (userId, amount) VALUES (20, 300);
+INSERT INTO Amount (userId, amount) VALUES (20, 230);
+INSERT INTO Amount (userId, amount) VALUES (20, 400);
+INSERT INTO Amount (userId, amount) VALUES (20, 150);
+
+USE Test;
+
+SELECT a.amount FROM Amount a JOIN Users u ON a.UserId = u.userId WHERE u.City = 1;
+SELECT SUM(a.amount) FROM Amount a JOIN Users u ON a.UserId = u.userId WHERE u.City = 1;
