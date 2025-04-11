@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cmath>
+
+ 
+using namespace std;
+ 
+struct point
+{
+    int x;
+    int y;
+    
+};
+
+struct triangle
+{
+    point a;
+    point b;
+    point c;
+};
+
+
+int main()
+{
+    point A;
+    A.x = 12;
+    A.y = 10;
+    point B;
+    B.x = 16;
+    B.y = 8;
+    point C;
+    C.x = 15;
+    C.y = 13;
+    int S;
+ 
+
+    if(A.x >= 0 && A.y >= 0 && B.x >= 0 && B.y >= 0 && C.x >= 0 && C.y >=0)
+    {
+        S = 0.5 * abs((B.x-A.x)*(C.y-A.y)-(C.x-A.x)*(B.y-A.y));
+        
+        printf("%d", S);
+    }
+    
+    else
+    {
+        printf("Не удалось найти площадь");
+    }
+    
+
+    return 0;
+}
