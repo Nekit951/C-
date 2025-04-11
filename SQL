@@ -186,5 +186,5 @@ INSERT INTO Amount (userId, amount) VALUES (20, 230);
 INSERT INTO Amount (userId, amount) VALUES (20, 400);
 INSERT INTO Amount (userId, amount) VALUES (20, 150);
 
-SELECT a.amount FROM Amount a JOIN Users u ON a.UserId = u.userId WHERE u.City = 1;
-SELECT SUM(a.amount) FROM Amount a JOIN Users u ON a.UserId = u.userId WHERE u.City = 1;
+SELECT a.amount FROM Amount a JOIN Users u ON a.UserId = u.userId JOIN Citys c ON u.City = c.cityId  WHERE c.CityName = 'Moscow';
+SELECT SUM(a.amount) FROM Amount a JOIN Users u ON a.UserId = u.userId JOIN Citys c ON u.City = c.cityId  WHERE c.CityName = 'Moscow';
