@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+// Выводит 100000 элементов массива + показывает сколько раз элементов вывелось + определяет среднее арифм. 
+int randInt(int start, int end)
+{
+    return rand() % (end - start + 1) + start;
+}
+
+double findAverage(int arr[], int n)
+{
+    double sum = 0;
+    for(int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+    }
+    
+    return sum/n;
+}
+
+int main()
+{
+    srand(time(0));
+    int start = -100;
+    int end = 100;
+    int n = 100000;
+    int a[n];
+    int count[201] = {0}; 
+
+    for(int i = 0; i < n; i++)
+    {
+        a[i] = randInt(start,end);
+        count[a[i] + 100]++; 
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d", a[i]);
+        if(count[a[i] + 100] > 1)
+        printf("(%d раз)", count[a[i]+100]); 
+        printf("\n");
+    }
+
+    double avg = findAverage(a, n);
+    printf("Среднее арифметическое: %.2f\n", avg);
+
+    return 0;
+}
