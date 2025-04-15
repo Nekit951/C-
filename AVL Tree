@@ -1,0 +1,99 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
+
+struct Node
+{
+    int a;
+    Node* left = nullptr;
+    Node* right = nullptr;
+
+    Node(int val)
+    {
+        a = val;
+    }
+};
+
+void obhod(Node* node) // обход дерева
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    obhod(node->left);
+    printf("%d\n", node->a);
+    obhod(node->right);
+}
+
+Node* insert(Node* node, int key) // вставка в дерево 
+{
+    if (node == nullptr)
+    {
+        printf("Создан узел, ключ=%d\n", key);
+        return new Node(key);
+    }
+    else if (node->a > key)
+    {
+        // Проверяем, не было ли уже вывести направление
+        if (node->left == nullptr) {
+            printf("Число %d идет влево\n", key);
+        }
+        node->left = insert(node->left, key);
+    }
+    else
+    {
+        // Проверяем, не было ли уже вывести направление
+        if (node->right == nullptr) {
+            printf("Число %d идет вправо\n", key);
+        }
+        node->right = insert(node->right, key);
+    }
+
+    return node;
+}
+
+int randInt(int start, int end) // генерация рандомных чисел
+{
+    return rand() % (end - start + 1) + start;
+}
+
+void aaa(int arr[], int size) // вывод массива
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    setlocale(LC_ALL, "RU");
+    srand(time(0));
+    int start = 0;
+    int end = 100;
+    const int n = 10;
+    int a[10];
+
+    for (int i = 0; i < n; i++) // Генерация рандомных чисел
+    {
+        a[i] = randInt(start, end);
+    }
+
+    printf("Рандомные числа:\n"); // Вывод рандомных чисел
+    aaa(a, n);
+
+    Node* root = nullptr; // Вставка в дерево
+
+    for (int i = 0; i < n; i++)
+    {
+        root = insert(root, a[i]);
+    }
+
+    printf("\nОтсортированное дерево:\n"); // Вывод отсортированного дерева
+    obhod(root);
+
+    return 0;
+}
