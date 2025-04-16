@@ -1,14 +1,10 @@
 #include <iostream>
 #include <cmath>
 
- 
-using namespace std;
- 
 struct point
 {
     int x;
-    int y;
-    
+    int y;   
 };
 
 struct triangle
@@ -18,33 +14,44 @@ struct triangle
     point c;
 };
 
+// Функция для вычисления расстояния между двумя точками
+double distance(point p1, point p2)
+{
+    return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
+}
+
+// Функция для вычисления площади треугольника по формуле Герона
+double heron_area(triangle t)
+{
+    double a = distance(t.a, t.b);
+    double b = distance(t.b, t.c);
+    double c = distance(t.c, t.a);
+    
+    double s = (a + b + c) / 2; // Полупериметр
+    return sqrt(s * (s - a) * (s - b) * (s - c)); // Площадь
+}
 
 int main()
 {
-    point A;
-    A.x = 12;
-    A.y = 10;
-    point B;
-    B.x = 16;
-    B.y = 8;
-    point C;
-    C.x = 15;
-    C.y = 13;
-    int S;
- 
+    point A = {12, 10};
+    point B = {16, 8};
+    point C = {15, 13};
 
-    if(A.x >= 0 && A.y >= 0 && B.x >= 0 && B.y >= 0 && C.x >= 0 && C.y >=0)
+    triangle t = {A, B, C};
+
+    // Проверка, что все точки находятся в первом квадранте
+    if (A.x >= 0 && A.y >= 0 && B.x >= 0 && B.y >= 0 && C.x >= 0 && C.y >= 0)
     {
-        S = 0.5 * abs((B.x-A.x)*(C.y-A.y)-(C.x-A.x)*(B.y-A.y));
-        
-        printf("%d", S);
+        double area = heron_area(t);
+        std::cout << "Площадь треугольника: " << area << std::endl;
     }
-    
     else
     {
-        printf("Не удалось найти площадь");
+        std::cout << "Не удалось найти площадь." << std::endl;
     }
-    
 
     return 0;
 }
+    
+
+ 
