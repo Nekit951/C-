@@ -43,11 +43,11 @@ int main()
     if (A.x >= 0 && A.y >= 0 && B.x >= 0 && B.y >= 0 && C.x >= 0 && C.y >= 0)
     {
         double area = heron_area(t);
-        std::cout << "Площадь треугольника: " << area << std::endl;
+        printf("Площадь треугольника: %f\n", area);
     }
     else
     {
-        std::cout << "Не удалось найти площадь." << std::endl;
+        printf("Не удалось найти площадь.");
     }
 
     return 0;
