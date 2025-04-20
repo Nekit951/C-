@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cmath>
+
+class Uravnenie
+{
+private:
+    static const int MAX_COEFFICIENTS = 10; // Максимальное количество коэффициентов
+    int coefficients[MAX_COEFFICIENTS];      // Хранит коэффициенты
+    int size;                                 // Количество действительных коэффициентов
+
+public:
+    // Конструктор
+    Uravnenie(const int* coeffs, int s) : size(s)
+    {
+        for (int i = 0; i < s && i < MAX_COEFFICIENTS; ++i)
+        {
+            coefficients[i] = coeffs[i];
+        }
+    }
+
+    // Метод для вывода коэффициентов
+    void Vivod()
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            printf("k%d = %d\n", (i + 1), coefficients[i]);
+        }
+    }
+
+    // Метод для вычисления значения уравнения для заданного x
+    double get(int x)
+    {
+        double result = 0.0;
+        for (int i = 0; i < size; ++i)
+        {
+            result += coefficients[i] * pow(x, i);
+        }
+        return result;
+    }
+};
+
+int main()
+{
+    setlocale(LC_ALL, "RU");
+    // Пример: задаем уравнение 2x^3 + 4x^2 + 6x + 8
+    int coeffs[] = { 8, 6, 4, 2 }; // коэффициенты от к0 до к3
+    Uravnenie uravnenie(coeffs, 4); // Передаем массив и количество коэффициентов
+
+    uravnenie.Vivod();
+
+    int x = 2; // Пример значения x
+    double result = uravnenie.get(x);
+    printf("Результат уравнения для x = %d: %f\n", x, result);
+
+    return 0;
+}
