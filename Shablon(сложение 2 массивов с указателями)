@@ -63,3 +63,4 @@ int main()
 
     return 0; // Завершение программы
 }
+В функции void Arrra и void SumArr убрать 2,3
