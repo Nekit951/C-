@@ -1,41 +1,43 @@
 #include <iostream>
 #include <ctime>
+#include <cstdio>
 
 template <typename T>
-
 T randInt(T start, T end)
 {
     return rand() % (end - start + 1) + start; // Генерация случайного числа
 }
 
 template <typename T>
-
-void Arrra(T arr[][3], int rows, int cols) // Функция для вывода двумерного массива
+void Arrra(T** arr, int rows, int cols) 
 {
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
-            printf("%d ", arr[i][j]); // Вывод элемента массива
+            printf("%d ", arr[i][j]); // Вывод элемента матрицы
         }
-        printf("\n"); // Вывод новой строки после каждой строки массива
+        printf("\n"); // Вывод новой строки после каждой строки матрицы
     }
 }
 
 template <typename T>
-
-void SumArr(T arr1[][3], T arr2[][3], int rows, int cols) // Функция для сложения двух двумерных массивов
+void SumArr(T** arr1, T** arr2, int rows, int cols) 
 {
-    T result[rows][3]; // Массив для хранения результата сложения
+    T** result = new T*[rows]; // Создание матрицы для хранения результата сложения
     for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < 3; j++) 
+        result[i] = new T[cols]; // Выделение памяти для каждого ряда
+        for (int j = 0; j < cols; j++)
         {
             result[i][j] = arr1[i][j] + arr2[i][j]; // Сложение элементов
         }
     }
+
     printf("Сумма:\n");
-    Arrra(result, rows, 3); // Вывод результата
+    Arrra(result, rows, cols); // Вывод результата
+
+    
 }
 
 int main()
@@ -45,16 +47,22 @@ int main()
     int end = 100; 
     int rows = 2; 
     int cols = 3; 
-    int a[2][3]; 
-    int b[2][3]; 
-
     
-    for (int i = 0; i < rows; i++) // Заполнение массивов случайными числами
+    // Создание матрицы
+    int** a = new int*[rows];
+    int** b = new int*[rows];
+    for (int i = 0; i < rows; i++)
+    {
+        a[i] = new int[cols];
+        b[i] = new int[cols];
+    }
+
+    for (int i = 0; i < rows; i++) // Заполнение матрицы случайными числами
     {
         for (int j = 0; j < cols; j++)
         {
-            a[i][j] = randInt(start, end); // Заполнение первого массива
-            b[i][j] = randInt(start, end); // Заполнение второго массива
+            a[i][j] = randInt(start, end); // Заполнение первой матрицы
+            b[i][j] = randInt(start, end); // Заполнение второй матрицы
         }
     }
 
