@@ -1,0 +1,120 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctime>
+
+struct Node
+{
+    int a;
+    Node* left = nullptr;
+    Node* right = nullptr;
+
+    Node(int val)
+    {
+        a = val;
+    }
+};
+
+void obhod(Node* node) // обход дерева
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    obhod(node->left);
+    printf("%d\n", node->a);
+    obhod(node->right);
+}
+
+Node* insert(Node* node, int key) // вставка в дерево 
+{
+    if (node == nullptr)
+    {
+        printf("Создан узел, ключ=%d\n", key);
+        return new Node(key);
+    }
+    else if (node->a > key)
+    {
+        // проверяем, не вывел ли он направление
+        if (node->left == nullptr) {
+            printf("Число %d идет влево\n", key);
+        }
+        node->left = insert(node->left, key);
+    }
+    else if (node->a < key) // проверка для правого значения
+    {
+        // проверяем, не вывел ли он направление
+        if (node->right == nullptr) {
+            printf("Число %d идет вправо\n", key);
+        }
+        node->right = insert(node->right, key);
+    }
+    else
+    {
+        // число уже существует в дереве
+        printf("Число %d уже существует в дереве, не вставляем.\n", key);
+    }
+
+    return node;
+}
+
+int randInt(int start, int end) // генерация рандомных чисел
+{
+    return rand() % (end - start + 1) + start;
+}
+
+void aaa(int arr[], int size) // вывод массива
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    setlocale(LC_ALL, "RU");
+    srand(time(0));
+    int start = 0;
+    int end = 100;
+    const int n = 10;
+    int a[10];
+
+    // уникальные числа в массиве
+    int currentCount = 0;
+    while (currentCount < n) // генерация уникальных рандомных чисел
+    {
+        int randNum = randInt(start, end);
+        bool exists = false;
+        for (int j = 0; j < currentCount; j++)
+        {
+            if (a[j] == randNum)
+            {
+                exists = true; // число уже существует
+                break;
+            }
+        }
+        if (!exists) // если число уникально, добавляем его в массив
+        {
+            a[currentCount] = randNum;
+            currentCount++;
+        }
+    }
+
+    printf("Уникальные рандомные числа:\n"); // вывод рандомных чисел
+    aaa(a, n);
+
+    Node* root = nullptr; // вставка в дерево
+
+    for (int i = 0; i < n; i++)
+    {
+        root = insert(root, a[i]);
+    }
+
+    printf("\nОтсортированное дерево:\n"); // вывод отсортированного дерева
+    obhod(root);
+
+    return 0;
+}
