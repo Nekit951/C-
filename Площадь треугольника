@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cmath>
+#include <cstdio> 
 
 struct point
 {
     int x;
-    int y;   
+    int y;
 };
 
 struct triangle
@@ -12,46 +13,50 @@ struct triangle
     point a;
     point b;
     point c;
+
+    // Метод для вычисления расстояния между двумя точками
+    double distance(const point& p1, const point& p2) const {
+        return std::sqrt(std::pow(p2.x - p1.x, 2) + std::pow(p2.y - p1.y, 2));
+    }
+
+    // Метод для проверки, является ли набор точек треугольником
+    bool is_triangle() const {
+        double ab = distance(a, b);
+        double bc = distance(b, c);
+        double ca = distance(c, a);
+        return (ab + bc > ca) && (ab + ca > bc) && (bc + ca > ab);
+    }
+
+    // Метод для нахождения площади треугольника с помощью формулы Герона
+    double area() const {
+        if (!is_triangle()) {
+            std::cerr << "Указанные точки не образуют треугольник!" << std::endl;
+            return 0.0;
+        }
+
+        double a_len = distance(a, b);
+        double b_len = distance(b, c);
+        double c_len = distance(c, a);
+
+        double p = (a_len + b_len + c_len) / 2; // полупериметр
+
+        return std::sqrt(p * (p - a_len) * (p - b_len) * (p - c_len));
+    }
 };
 
-// Функция для вычисления расстояния между двумя точками
-double distance(point p1, point p2)
+int main() 
 {
-    return sqrt(pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2));
-}
+    setlocale(LC_ALL, "RU");
+    triangle t = { {0, 0}, {4, 0}, {0, 3} }; // Пример: координаты вершин треугольника
 
-// Функция для вычисления площади треугольника по формуле Герона
-double heron_area(triangle t)
-{
-    double a = distance(t.a, t.b);
-    double b = distance(t.b, t.c);
-    double c = distance(t.c, t.a);
-    
-    double s = (a + b + c) / 2; // Полупериметр
-    return sqrt(s * (s - a) * (s - b) * (s - c)); // Площадь
-}
-
-int main()
-{
-    point A = {12, 10};
-    point B = {16, 8};
-    point C = {15, 13};
-
-    triangle t = {A, B, C};
-
-    // Проверка, что все точки находятся в первом квадранте
-    if (A.x >= 0 && A.y >= 0 && B.x >= 0 && B.y >= 0 && C.x >= 0 && C.y >= 0)
-    {
-        double area = heron_area(t);
-        printf("Площадь треугольника: %f\n", area);
+    if (t.is_triangle()) {
+        printf("Площадь треугольника: %.2f\n", t.area());
     }
-    else
-    {
-        printf("Не удалось найти площадь.");
+    else {
+        printf("Эти точки не образуют треугольник.\n");
     }
 
     return 0;
 }
-    
 
  
