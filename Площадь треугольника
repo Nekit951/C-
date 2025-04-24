@@ -14,28 +14,29 @@ struct triangle
 	point b;
 	point c;
 
-	bool isTriangle()
+	bool isTriangle() // Определение, является ли это треугольником
 	{
 		int area = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
 		return area != 0;
 	}
-	double ploshad()
+	double ploshad() // Нахождение площади 
 	{
-		double ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+		// Вычисление длины треугольника
+		double ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2)); 
 		double bc = sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
 		double ca = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
 
-		double p = (ab + bc + ca) / 2;
+		double p = (ab + bc + ca) / 2; // Полупериметр
 
-		return sqrt(p * (p - ab) * (p - bc) * (p - ca));
+		return sqrt(p * (p - ab) * (p - bc) * (p - ca)); // Формула Герона
 	}
 };
 
 int main()
 {
 	setlocale(LC_ALL, "RU");
-	triangle t = { {2,3}, {5,1}, {4,6} };
-	
+	triangle t = { {4,2}, {3,1}, {0,5} };
+
 	if (t.isTriangle())
 	{
 		printf("Площадь треугольника: %f", t.ploshad());
