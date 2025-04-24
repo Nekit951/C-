@@ -1,62 +1,52 @@
 #include <iostream>
 #include <cmath>
-#include <cstdio> 
+#include <cstdio>
 
 struct point
 {
-    int x;
-    int y;
+	int x;
+	int y;
 };
 
 struct triangle
 {
-    point a;
-    point b;
-    point c;
+	point a;
+	point b;
+	point c;
 
-    // Метод для вычисления расстояния между двумя точками
-    double distance(const point& p1, const point& p2) const {
-        return std::sqrt(std::pow(p2.x - p1.x, 2) + std::pow(p2.y - p1.y, 2));
-    }
+	bool isTriangle()
+	{
+		int area = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
+		return area != 0;
+	}
+	double ploshad()
+	{
+		if (!isTriangle())
+		{
+			printf("Они не образуют треугольник!");
+		}
 
-    // Метод для проверки, является ли набор точек треугольником
-    bool is_triangle() const {
-        double ab = distance(a, b);
-        double bc = distance(b, c);
-        double ca = distance(c, a);
-        return (ab + bc > ca) && (ab + ca > bc) && (bc + ca > ab);
-    }
+		double ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+		double bc = sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
+		double ca = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
 
-    // Метод для нахождения площади треугольника с помощью формулы Герона
-    double area() const {
-        if (!is_triangle()) {
-            std::cerr << "Указанные точки не образуют треугольник!" << std::endl;
-            return 0.0;
-        }
+		double p = (ab + bc + ca) / 2;
 
-        double a_len = distance(a, b);
-        double b_len = distance(b, c);
-        double c_len = distance(c, a);
-
-        double p = (a_len + b_len + c_len) / 2; // полупериметр
-
-        return std::sqrt(p * (p - a_len) * (p - b_len) * (p - c_len));
-    }
+		return sqrt(p * (p - ab) * (p - bc) * (p - ca));
+	}
 };
 
-int main() 
+int main()
 {
-    setlocale(LC_ALL, "RU");
-    triangle t = { {0, 0}, {4, 0}, {0, 3} }; // Пример: координаты вершин треугольника
-
-    if (t.is_triangle()) {
-        printf("Площадь треугольника: %.2f\n", t.area());
-    }
-    else {
-        printf("Эти точки не образуют треугольник.\n");
-    }
-
-    return 0;
+	setlocale(LC_ALL, "RU");
+	triangle t = { {2,3}, {5,1}, {4,6} };
+	
+	if (t.isTriangle())
+	{
+		printf("Площадь треугольника: %f", t.ploshad());
+	}
+	else
+	{
+		printf("Это не треугольник");
+	}
 }
-
- 
