@@ -10,35 +10,41 @@ int randInt(int start, int end)
 double findAverage(int arr[], int n)
 {
     double sum = 0;
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         sum += arr[i];
     }
-    
-    return sum/n;
+
+    return sum / n;
 }
 
 int main()
 {
+    setlocale(LC_ALL, "RU");
     srand(time(0));
     int start = -100;
     int end = 100;
     int n = 100000;
     int a[100000];
-    int count[201] = {0}; 
+    int count[201] = {0};
+    bool printed[201] = {false}; // Массив для отметки выведенных чисел
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
-        a[i] = randInt(start,end);
-        count[a[i] + 100]++; 
+        a[i] = randInt(start, end);
+        count[a[i] + 100]++;
     }
 
     for (int i = 0; i < n; i++)
     {
-        printf("%d", a[i]);
-        if(count[a[i] + 100] > 1)
-        printf("(%d раз)", count[a[i]+100]); 
-        printf("\n");
+        int num = a[i]; 
+        if (!printed[num + 100])
+        {
+            printf("%d", num);
+            printf("(%d раз)", count[num + 100]); // Проверяем, было ли число уже выведено
+            printf("\n");
+            printed[num + 100] = true; // Отметка, что число было выведено
+        } 
     }
 
     double avg = findAverage(a, n);
