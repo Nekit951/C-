@@ -26,8 +26,8 @@ int main()
     int end = 100;
     int n = 100000;
     int a[100000];
-    int count[201] = {0};
-    bool printed[201] = {false}; // Массив для отметки выведенных чисел
+    int count[201] = { 0 };
+    
 
     for (int i = 0; i < n; i++)
     {
@@ -35,16 +35,10 @@ int main()
         count[a[i] + 100]++;
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < 201; i++)
     {
-        int num = a[i]; 
-        if (!printed[num + 100])
-        {
-            printf("%d", num);
-            printf("(%d раз)", count[num + 100]); // Проверяем, было ли число уже выведено
-            printf("\n");
-            printed[num + 100] = true; // Отметка, что число было выведено
-        } 
+        int num = i - 100;
+        printf("%d (%d раз)\n", num, count[i]);
     }
 
     double avg = findAverage(a, n);
