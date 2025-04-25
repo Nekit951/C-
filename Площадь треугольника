@@ -4,45 +4,56 @@
 
 struct point
 {
-	int x;
-	int y;
+    int x;
+    int y;
 };
 
 struct triangle
 {
-	point a;
-	point b;
-	point c;
+    point a;
+    point b;
+    point c;
 
-	bool isTriangle() // Определение, является ли это треугольником
-	{
-		int area = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
-		return area != 0;
-	}
-	double ploshad() // Нахождение площади 
-	{
-		// Вычисление длины треугольника
-		double ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2)); 
-		double bc = sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
-		double ca = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
+    void storony(double& ab, double& bc, double& ca) // Вычисление сторон
+    {
+        ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+        bc = sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
+        ca = sqrt(pow(a.x - c.x, 2) + pow(a.y - c.y, 2));
+    }
 
-		double p = (ab + bc + ca) / 2; // Полупериметр
+    bool isTriangle() // Определение, является ли это треугольником
+    {
+        double ab, bc, ca;
+        storony(ab, bc, ca);
 
-		return sqrt(p * (p - ab) * (p - bc) * (p - ca)); // Формула Герона
-	}
+        // Проверка неравенств сторон треугольника
+        return (ab + bc > ca) && (ab + ca > bc) && (bc + ca > ab) && (ab > 0 && bc > 0 && ca > 0);
+    }
+
+    double ploshad() // Нахождение площади 
+    {
+        double ab, bc, ca;
+        storony(ab, bc, ca);
+
+        double p = (ab + bc + ca) / 2; // Полупериметр
+
+        return sqrt(p * (p - ab) * (p - bc) * (p - ca)); // Формула Герона
+    }
 };
 
 int main()
 {
-	setlocale(LC_ALL, "RU");
-	triangle t = { {4,2}, {3,1}, {0,5} };
+    setlocale(LC_ALL, "RU");
+    triangle t = { {4,2}, {3,1}, {0,5} };
 
-	if (t.isTriangle())
-	{
-		printf("Площадь треугольника: %f", t.ploshad());
-	}
-	else
-	{
-		printf("Это не треугольник");
-	}
+    if (t.isTriangle())
+    {
+        printf("Площадь треугольника: %f\n", t.ploshad());
+    }
+    else
+    {
+        printf("Это не треугольник\n");
+    }
+
+    return 0;
 }
