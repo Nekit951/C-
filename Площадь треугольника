@@ -30,7 +30,6 @@ struct triangle
         // Проверка неравенств сторон треугольника
         return (ab + bc > ca) && (ab + ca > bc) && (bc + ca > ab) && (ab > 0 && bc > 0 && ca > 0);
     }
-
     double ploshad() // Нахождение площади 
     {
         double p = (ab + bc + ca) / 2; // Полупериметр
