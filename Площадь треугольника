@@ -14,7 +14,9 @@ struct triangle
     point b;
     point c;
 
-    void storony(double& ab, double& bc, double& ca) // Вычисление сторон
+    double ab, bc, ca;
+
+    void storony() // Вычисление сторон
     {
         ab = sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
         bc = sqrt(pow(c.x - b.x, 2) + pow(c.y - b.y, 2));
@@ -23,8 +25,7 @@ struct triangle
 
     bool isTriangle() // Определение, является ли это треугольником
     {
-        double ab, bc, ca;
-        storony(ab, bc, ca);
+        storony();
 
         // Проверка неравенств сторон треугольника
         return (ab + bc > ca) && (ab + ca > bc) && (bc + ca > ab) && (ab > 0 && bc > 0 && ca > 0);
@@ -32,9 +33,6 @@ struct triangle
 
     double ploshad() // Нахождение площади 
     {
-        double ab, bc, ca;
-        storony(ab, bc, ca);
-
         double p = (ab + bc + ca) / 2; // Полупериметр
 
         return sqrt(p * (p - ab) * (p - bc) * (p - ca)); // Формула Герона
